@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Account Detail
+{% endblock %}
+
+{% block body %}
+    <h3>Groups associated with this acc</h3>
+    {% for grp in  account.group_set.all %}
+        {{ grp.grp_name }}
+    {% endfor %}
+
+
+{% endblock %}

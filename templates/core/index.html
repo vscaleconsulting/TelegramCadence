@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/core/home-page.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    Welcome to Telegram Dashboard
+{% endblock %}
+
+
+{% block body %}
+    {% include "partials/nav.html" %}
+
+    <div class="home-contents text-center pt-5 vertical-center">
+        <div class="container">
+            <div class="col-md-8 m-auto">
+
+                {% if not request.user.is_authenticated %}
+                    <img src="{% static 'images/core.svg' %}" alt="" style="width: 320px;">
+                    <h1 style="font-size: 35px;font-weight: 700;" class="mt-3 mb-2">VScale CRM</h1>
+                    <h5>CRM helps to manage your leads</h5>
+                    <button class="btn-md btn-success btn" onclick="location.href='{% url 'user:user-login' %}'">Login
+                    </button>
+                    <button class="btn-md btn-primary btn" onclick="location.href='{% url 'user:user-create' %}'">Create
+                        Account
+                    </button>
+
+                {% else %}
+                    {% if request.user.is_staff %}
+                        <button class="leadsBtn" onclick="location.href='/admin'">Admin</button>
+{#                         <button class="leadsBtn" onclick="location.href='{% url 'user:user-list' %}'">#}
+{#                            All Users#}
+{#                        </button>#}
+                    {% else %}
+{#                        <button class="leadsBtn" onclick="location.href='{% url 'tg_account:account-list' %}'">#}
+{#                            Accounts#}
+{#                        </button>#}
+{#                        <button class="leadsBtn" onclick="location.href='{% url 'tg_group:group-list' %}'">Groups#}
+{#                        </button>#}
+{#                        <button class="leadsBtn" onclick="location.href='{% url 'tg_message:message-view' %}'">#}
+{#                            Messages#}
+{#                        </button>#}
+                    {% endif %}
+                    <button class="btn-danger btn"
+                            onclick="location.href='{% url 'user:user-delete' request.user.pk %}'">Delete
+                    </button>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

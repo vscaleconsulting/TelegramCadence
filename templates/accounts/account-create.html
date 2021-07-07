@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Link Account
+{% endblock %}
+
+{% block body %}
+
+    <div class="loginBox">
+        <div class="container">
+            <div class="col text-center mt-3">
+                <h4 class="mb-4">Add Telegram Account</h4>
+                <form method="POST" class="form-control col-md-6 justify-content-center m-auto">
+                    {% csrf_token %}
+                    <input id='num' name="phoneNum" type="tel" pattern="[0-9]+" placeholder="Enter Phone Number" required >
+                    <button class="btn btn-success mt-2" type="submit">Send OTP</button>
+                </form>
+                {#                <button class="btn btn-info mt-2" onclick="location.href='{% url 'tg_account:account-list' %}'">Go Back</button>#}
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+/* html, body {
+    height: 100%;
+} */
+
+.leadsBtn{
+    padding: 8px 20px;
+    border:1px solid #514AC0;
+    background-color: #514AC0;
+    border-radius: 10px;
+    margin-top: 15px;
+    color: white;
+}
+
+.vertical-center {
+    min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 80vh; /* These two lines are counted as one :-)       */
+  
+    display: flex;
+    align-items: center;
+  }

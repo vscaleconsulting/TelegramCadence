@@ -1,0 +1,119 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light container">
+
+    <div class="container-fluid">
+        <a class="navbar-brand mb-0 h4" href="#">TG Cadence</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mt-3 mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'core:home-page' %}">Home</a>
+                </li>
+                {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <p class="nav-link text-dark">Hello, {{ user.username }} (Admin) </p>
+                    </li>
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link active" aria-current="page" href="{% url 'user:user-list' %}">All Users</a>#}
+{#                    </li>#}
+                {% elif request.user.is_authenticated %}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link active" aria-current="page" href="{% url 'tg_account:account-list' %}">TG Accounts</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link active" aria-current="page" href="{% url 'tg_group:group-list' %}">TG Groups</a>#}
+{#                    </li>#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link active" aria-current="page" href="{% url 'tg_message:message-view' %}">Messages</a>#}
+{#                    </li>#}
+
+                {% elif not request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user:user-create' %}">Create Acccount</a>
+                    </li>
+                    <button class="btn btn-success ml-3" onclick="location.href='{% url 'user:user-login' %}'">Login</button>
+                {% elif request.user.is_authenticated and not request.user.is_superuser %}
+
+                    {% if agent is not None %}
+
+                        <li class="nav-item">
+                            <div class="nav-link text-dark" style="display: inline-block;">Number:
+                                <div id="a" style="display: inline-block;">{{ agent.session.phone_num }}</div>
+                                <img onclick="copyNumDivToClipboard()" id='copy-clipboard' style="cursor:pointer;"
+                                     src="{% static 'images/ctc.png' %}">
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post">
+                                {% csrf_token %}
+                                <a class="nav-link">
+                                    <button class="swapBtn" name='swap' type="submit">🔀</button>
+                                </a>
+                            </form>
+                            {% comment %} <a class="nav-link" href="#">Swap Numbers</a> {% endcomment %}
+                        </li>
+                        <li class="nav-item">
+                            {% comment %} <a class="nav-link" href="#">Get OTP</a> {% endcomment %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <a class="nav-link">
+                                    <button class="swapBtn" name='otp' type="submit">Get OTP</button>
+                                </a>
+                                {% comment %} <button class="btn-md btn-primary btn active" name='otp' type="submit">Get
+                            OTP</button> {% endcomment %}
+                            </form>
+                        </li>
+                        {% if otp %}
+                            <li class="nav-item">
+                                <div class="nav-link text-dark" style="display: inline-block;">
+                                    <div id="otp-field" style="display: inline-block;">{{ otp }}</div>
+                                    <img onclick="copyOtpDivToClipboard()" id='copy-clipboard' style="cursor:pointer;"
+                                         src="{% static 'images/ctc.png' %}">
+                                </div>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <p class="nav-link text-dark">Hello, {{ user.username }}</p>
+                    </li>
+
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <button class="btn btn-danger ml-3" onclick="location.href='{% url 'user:user-logout' %}'">Log
+                            Out
+                        </button>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function copyNumDivToClipboard() {
+        var range = document.createRange();
+        range.selectNode(document.getElementById("a"));
+        window.getSelection().removeAllRanges(); // clear current selection
+        window.getSelection().addRange(range); // to select text
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges(); // to deselect
+    }
+</script>
+
+<script>
+    function copyOtpDivToClipboard() {
+        var range = document.createRange();
+        range.selectNode(document.getElementById("otp-field"));
+        window.getSelection().removeAllRanges(); // clear current selection
+        window.getSelection().addRange(range); // to select text
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges(); // to deselect
+    }
+</script>

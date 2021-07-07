@@ -1,0 +1,29 @@
+.contacts{
+    margin-top: 70px;
+}
+.thead{
+    background-color: #f3f2f2;
+    padding: 10px;
+}
+.box img{
+    width: 50px;
+}
+.box{
+    background-color: #f3f2f2;
+    border: 1px solid #f3f2f2;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+.repopulate{
+    background-color: rgb(201, 99, 99);
+    margin-top: 5px;
+    margin-left: 15px;
+    padding: 5px 15px;
+    border-radius: 5px; 
+}
+.completed{
+    margin-top: 70px;
+}
+.right{
+    text-align: right;
+}
