@@ -53,6 +53,7 @@ def cadence_detail(request, pk):
     form = script_form.MessageScriptModelForm()
 
     context = {
+        'pk': pk,
         'form': form,
         'messages': messages
     }

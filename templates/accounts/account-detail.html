@@ -10,4 +10,7 @@
     <h5>Account Name: {{ account.acc_name }}</h5>
     <h5>Account Username: {{ account.acc_username }}</h5>
     <h5>Account ID: {{ account.acc_id }}</h5>
+    <button class="btn btn-info mt-2" onclick="location.href='{% url 'account:account-list' %}'">Go
+        Back
+    </button>
 {% endblock %}

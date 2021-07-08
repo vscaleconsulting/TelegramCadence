@@ -6,10 +6,15 @@
 {% endblock %}
 
 {% block body %}
-
-    {% for message in messages %}
-        <div>{{ message.message }} - {{ message.account }} - {{ message.time_days }}: {{ message.time_hours }}: {{ message.time_minutes }}: {{ message.time_seconds }}</div>
-    {% endfor %}
+    <div class="'container">
+        <div class="'col text-center">
+            <h3>Script</h3>
+            {% for message in messages %}
+                <div>{{ message.message }} - {{ message.account }}
+                    - {{ message.time_days }}: {{ message.time_hours }}: {{ message.time_minutes }}: {{ message.time_seconds }}</div>
+            {% endfor %}
+        </div>
+    </div>
     <div class="loginBox">
         <div class="container">
             <div class="col text-center mt-3">
@@ -19,8 +24,12 @@
                     {{ form|crispy }}
                     <button class="btn btn-success mt-2" type="submit">Create</button>
                 </form>
-                {#                <button class="btn btn-info mt-2" onclick="location.href='{% url 'tg_account:account-list' %}'">Go Back</button>#}
-
+                <button class="btn btn-info mt-2" onclick="location.href='{% url 'cadence:cadence-list' %}'">Go
+                    Back
+                </button>
+                <button class="btn btn-secondary mt-2" onclick="location.href='{% url 'cadence:cadence-execute' pk %}'">
+                    Execute
+                </button>
             </div>
         </div>
     </div>
