@@ -17,9 +17,9 @@
         <div class="container">
             <div class="top d-flex m-auto">
                 <div class="col-md-6">
-                    <h1>Accounts</h1>
-                    <button class="btn-md btn-success btn" onclick="location.href='{% url 'account:account-create' %}'">
-                        Link New TG Account
+                    <h1>Cadences</h1>
+                    <button class="btn-md btn-success btn" onclick="location.href='{% url 'cadence:cadence-create' %}'">
+                        Create New Cadence
                     </button>
                 </div>
             </div>
@@ -29,16 +29,19 @@
                     <thead class="thead">
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Execute</th>
                     <th scope="col">Delete</th>
 
                     </thead>
                     <tbody>
-                    {% for account in object_list %}
+                    {% for cadence in object_list %}
                         <tr>
                             <th scope="row">{{ forloop.counter }}</th>
-                            <td><a href="{% url 'account:account-detail' account.pk %}">{{ account.acc_name }}</a></td>
+                            <td><a href="{% url 'cadence:cadence-detail' cadence.pk %}">{{ cadence.name }}</a></td>
+                            <td><a href="{% url 'cadence:cadence-execute' cadence.pk %}">Execute</a></td>
+
                             <td>
-                                <a href="{% url 'account:account-delete' account.pk %}">❌
+                                <a href="{% url 'cadence:cadence-delete' cadence.pk %}">❌
                                 </a>
                             </td>
 

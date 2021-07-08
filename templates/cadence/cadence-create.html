@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Create Cadence
+{% endblock %}
+
+{% block body %}
+
+    <div class="loginBox">
+        <div class="container">
+            <div class="col text-center mt-3">
+                <h4 class="mb-4">Create New Cadence</h4>
+                <form method="POST" class="form-control col-md-6 justify-content-center m-auto">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-success mt-2" type="submit">Create</button>
+                </form>
+                {#                <button class="btn btn-info mt-2" onclick="location.href='{% url 'tg_account:account-list' %}'">Go Back</button>#}
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

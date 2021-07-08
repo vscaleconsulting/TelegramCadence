@@ -37,6 +37,8 @@ THIRD_PARTY_APPS = [
 INSTALLED_APPS = [
                      'users.apps.UsersConfig',
                      'accounts.apps.AccountsConfig',
+                     'cadence.apps.CadenceConfig',
+                     'message_scripts.apps.MessageScriptsConfig',
                      'django.contrib.admin',
                      'django.contrib.auth',
                      'django.contrib.contenttypes',

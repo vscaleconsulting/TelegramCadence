@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Cadence Detail
+{% endblock %}
+
+{% block body %}
+
+    {% for message in messages %}
+        <div>{{ message.message }} - {{ message.account }} - {{ message.time_days }}: {{ message.time_hours }}: {{ message.time_minutes }}: {{ message.time_seconds }}</div>
+    {% endfor %}
+    <div class="loginBox">
+        <div class="container">
+            <div class="col text-center mt-3">
+                <h4 class="mb-4">Create New Message</h4>
+                <form method="POST" class="form-control col-md-6 justify-content-center m-auto">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-success mt-2" type="submit">Create</button>
+                </form>
+                {#                <button class="btn btn-info mt-2" onclick="location.href='{% url 'tg_account:account-list' %}'">Go Back</button>#}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -36,11 +36,11 @@
 {#                            All Users#}
 {#                        </button>#}
                     {% else %}
-{#                        <button class="leadsBtn" onclick="location.href='{% url 'tg_account:account-list' %}'">#}
-{#                            Accounts#}
-{#                        </button>#}
-{#                        <button class="leadsBtn" onclick="location.href='{% url 'tg_group:group-list' %}'">Groups#}
-{#                        </button>#}
+                        <button class="leadsBtn" onclick="location.href='{% url 'account:account-list' %}'">
+                            Accounts
+                        </button>
+                        <button class="leadsBtn" onclick="location.href='{% url 'cadence:cadence-list' %}'">Cadences
+                        </button>
 {#                        <button class="leadsBtn" onclick="location.href='{% url 'tg_message:message-view' %}'">#}
 {#                            Messages#}
 {#                        </button>#}

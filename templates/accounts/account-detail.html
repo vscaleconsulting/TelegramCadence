@@ -6,10 +6,8 @@
 {% endblock %}
 
 {% block body %}
-    <h3>Groups associated with this acc</h3>
-    {% for grp in  account.group_set.all %}
-        {{ grp.grp_name }}
-    {% endfor %}
-
-
+    <h4>Account Details</h4>
+    <h5>Account Name: {{ account.acc_name }}</h5>
+    <h5>Account Username: {{ account.acc_username }}</h5>
+    <h5>Account ID: {{ account.acc_id }}</h5>
 {% endblock %}

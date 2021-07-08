@@ -21,12 +21,12 @@
 {#                        <a class="nav-link active" aria-current="page" href="{% url 'user:user-list' %}">All Users</a>#}
 {#                    </li>#}
                 {% elif request.user.is_authenticated %}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link active" aria-current="page" href="{% url 'tg_account:account-list' %}">TG Accounts</a>#}
-{#                    </li>#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link active" aria-current="page" href="{% url 'tg_group:group-list' %}">TG Groups</a>#}
-{#                    </li>#}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'account:account-list' %}">Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'cadence:cadence-list' %}">Cadences</a>
+                    </li>
 {#                    <li class="nav-item">#}
 {#                        <a class="nav-link active" aria-current="page" href="{% url 'tg_message:message-view' %}">Messages</a>#}
 {#                    </li>#}

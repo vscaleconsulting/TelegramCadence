@@ -1,23 +1,15 @@
 import asyncio
 
-from django.core.serializers import serialize, deserialize
-from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import DeleteView, ListView, DetailView
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
 
 from . import models
 
-
 clients = {}
-
-class LazyEncoder(DjangoJSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, TelegramClient):
-            return str(obj)
-        return super().default(obj)
 
 
 class TgAccountCreateView(View):
@@ -41,11 +33,7 @@ def get_otp(request, phone_num):
         otp = request.POST.get('otp')
         client = clients[phone_num]
         clients.pop(phone_num)
-        # client = request.session.get('client')
-        # client = deserialize('json', client, cls=LazyEncoder)
-        print(client)
-        # client = ast.literal_eval(client)
-        # print(client)
+
         client.connect()
         pch = request.session.get('pch')
 
@@ -72,32 +60,35 @@ def get_otp(request, phone_num):
     code = client.send_code_request(phone_num)
     client.disconnect()
     request.session['pch'] = code.phone_code_hash
-    # request.session['client'] = serialize('json', [client], cls=LazyEncoder)
     clients[phone_num] = client
     return render(request, 'accounts/account-otp.html')
+
+
 #
-# class TgAccountDeleteView(DeleteView):
-#     template_name = 'tg_accounts/account-delete.html'
-#     model = models.Account
-#     context_object_name = 'account'
-#     success_url = reverse_lazy('tg_account:account-list')
+class TgAccountDeleteView(DeleteView):
+    template_name = 'accounts/account-delete.html'
+    model = models.Account
+    context_object_name = 'account'
+    success_url = reverse_lazy('account:account-list')
+
+
+class TgAccountListView(ListView):
+    template_name = 'accounts/account-list.html'
+    model = models.Account
+
+    context_object_name = 'account'
+
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
+
 #
 #
-# class TgAccountListView(ListView):
-#     template_name = 'tg_accounts/account-list.html'
-#     model = models.Account
-#
-#     context_object_name = 'account'
-#
-#     def get_queryset(self):
-#         return self.model.objects.filter(user=self.request.user)
-#
-#
-# class TgAccountDetailView(DetailView):
-#     template_name = 'tg_accounts/account-detail.html'
-#     context_object_name = 'account'
-#
-#     model = models.Account
+class TgAccountDetailView(DetailView):
+    template_name = 'accounts/account-detail.html'
+    context_object_name = 'account'
+
+    model = models.Account
 
 # def get_queryset(self):
 #     account = models.Account.objects.get(pk=self.kwargs['pk'])
