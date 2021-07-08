@@ -3,6 +3,7 @@ from datetime import datetime
 
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
+from telethon.tl.functions.channels import JoinChannelRequest
 
 debug = True
 
@@ -27,3 +28,15 @@ def send_message(sender_session, receiver, message):
         print(e)
         client.disconnect()
         return False
+
+
+def join_grp(grp_name, str_sess):
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    client = TelegramClient(StringSession(str_sess), 1868530, "edf7d1e794e0b4a5596aa27c29d17eba", loop=loop)
+    with client:
+        try:
+            client(JoinChannelRequest(grp_name))
+            return True
+        except:
+            return False
