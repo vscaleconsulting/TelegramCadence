@@ -32,6 +32,7 @@ THIRD_PARTY_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'django_extensions',
+    'background_task',
 ]
 
 INSTALLED_APPS = [

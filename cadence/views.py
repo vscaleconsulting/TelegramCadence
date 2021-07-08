@@ -5,6 +5,7 @@ from django.views.generic import CreateView, DeleteView, ListView
 
 from message_scripts import forms as script_form
 from . import forms, models
+from scripts.backgroundprocess import schedule_cadence
 
 
 class CadenceCreateView(CreateView):
@@ -76,5 +77,13 @@ def cadence_execute(request, pk):
     context = {
         'form': form
     }
-
+    if request.method == 'POST':
+        form = forms.ExecuteCadenceForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            datetime = form.cleaned_data['global_time']
+            grp_name = form.cleaned_data['grp_name']
+            schedule_cadence(cadence, grp_name, datetime)            
+            
+            
     return render(request, 'cadence/cadence-execute.html', context)
