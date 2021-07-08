@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, DeleteView, ListView, FormView
+from django.views.generic import CreateView, DeleteView, ListView
 
 from message_scripts import forms as script_form
 from . import forms, models
@@ -69,17 +69,12 @@ def cadence_detail(request, pk):
     return render(request, 'cadence/cadence-detail.html', context)
 
 
-# def get_queryset(self):
-#     account = models.Account.objects.get(pk=self.kwargs['pk'])
-#     return account.group_set.all()
-
 def cadence_execute(request, pk):
     cadence = models.Cadence.objects.get(pk=pk)
     form = forms.ExecuteCadenceForm()
-    
+
     context = {
         'form': form
     }
-    
-    return render(request, 'cadence/cadence-execute.html', context)
 
+    return render(request, 'cadence/cadence-execute.html', context)
