@@ -15,6 +15,7 @@
 
 {% block body %}
 
+
     <div class="loginBox">
         <div class="container">
             <div class="col text-center mt-3">
@@ -24,9 +25,11 @@
                     {% bootstrap_form form %}
                     <button class="btn btn-success mt-2" type="submit">Execute</button>
                 </form>
-                <button class="btn btn-info mt-2" onclick="location.href='{% url 'cadence:cadence-list' %}'">Go
-                    Back
-                </button>
+                {% if 'page' in request.get_full_path %}
+                   <a href="{% url 'cadence:cadence-detail' pk %}" class="btn btn-secondary mt-2">Go Back</a>
+                {% else %}
+                    <a href="{% url 'cadence:cadence-list' %}" class="btn btn-secondary mt-2">Go Back</a>
+                {% endif %}
             </div>
         </div>
     </div>

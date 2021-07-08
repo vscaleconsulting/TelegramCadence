@@ -46,10 +46,7 @@
                 <button class="btn btn-info mt-2" onclick="location.href='{% url 'cadence:cadence-list' %}'">Go
                     Back
                 </button>
-                <button class="btn btn-secondary mt-2"
-                        onclick="location.href='{% url 'cadence:cadence-execute' pk %}'">
-                    Execute
-                </button>
+                <a href="{% url 'cadence:cadence-execute' pk %}?page=detail" class="btn btn-secondary mt-2">Execute</a>
 
             </div>
         </div>

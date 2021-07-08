@@ -69,7 +69,8 @@ def cadence_execute(request, pk):
     form = forms.ExecuteCadenceForm()
 
     context = {
-        'form': form
+        'form': form,
+        'pk': pk
     }
     if request.method == 'POST':
         form = forms.ExecuteCadenceForm(request.POST)
@@ -79,7 +80,6 @@ def cadence_execute(request, pk):
             grp_name = form.cleaned_data['grp_name']
             schedule_cadence(cadence, grp_name, datetime)
             messages.info(request, 'Cadence Executed')
-
         return redirect(reverse_lazy('cadence:cadence-list'))
 
     return render(request, 'cadence/cadence-execute.html', context)
