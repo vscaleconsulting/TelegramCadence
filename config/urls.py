@@ -18,7 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('cadence/', include('cadence.urls', namespace='cadence')),
-
+    path('message/', include('message_scripts.urls', namespace='message')),
     path('account/', include('accounts.urls', namespace='account')),
     path('user/', include('users.urls', namespace='user')),
     path('', include('core.urls', namespace='core')),

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Delete {{ object.name }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="loginBox">
+        <div class="container mt-4">
+            <div class="col text-center">
+
+                <form method="post"
+                      class="form-control col-md-6 justify-content-center m-auto">
+                    <h4 class="mb-4">Are You Sure?</h4>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-danger mt-2">Yes</button>
+                    <a href="{% url 'cadence:cadence-detail' c_pk %}" class="btn btn-primary mt-2">Cancel</a>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

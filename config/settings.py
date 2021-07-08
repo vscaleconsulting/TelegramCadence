@@ -33,20 +33,22 @@ THIRD_PARTY_APPS = [
     'crispy_bootstrap5',
     'django_extensions',
     'background_task',
+
 ]
 
-INSTALLED_APPS = [
-                     'users.apps.UsersConfig',
-                     'accounts.apps.AccountsConfig',
-                     'cadence.apps.CadenceConfig',
-                     'message_scripts.apps.MessageScriptsConfig',
-                     'django.contrib.admin',
-                     'django.contrib.auth',
-                     'django.contrib.contenttypes',
-                     'django.contrib.sessions',
-                     'django.contrib.messages',
-                     'django.contrib.staticfiles',
-                 ] + THIRD_PARTY_APPS
+INSTALLED_APPS = ['bootstrap4',
+                  "bootstrap_datepicker_plus",
+                  'users.apps.UsersConfig',
+                  'accounts.apps.AccountsConfig',
+                  'cadence.apps.CadenceConfig',
+                  'message_scripts.apps.MessageScriptsConfig',
+                  'django.contrib.admin',
+                  'django.contrib.auth',
+                  'django.contrib.contenttypes',
+                  'django.contrib.sessions',
+                  'django.contrib.messages',
+                  'django.contrib.staticfiles',
+                  ] + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

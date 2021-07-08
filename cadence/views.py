@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DeleteView, ListView
@@ -6,7 +7,6 @@ from django.views.generic import CreateView, DeleteView, ListView
 from message_scripts import forms as script_form
 from scripts.backgroundprocess import schedule_cadence
 from . import forms, models
-from scripts.functions import join_grp
 
 
 class CadenceCreateView(CreateView):
@@ -40,23 +40,15 @@ class CadenceListView(ListView):
         return self.model.objects.filter(user=self.request.user)
 
 
-class CadenceDetailView(View):
-    def get(self, *args, **kwargs):
-        pass
-
-    def post(self, *args, **kwargs):
-        pass
-
-
 def cadence_detail(request, pk):
     cadence = models.Cadence.objects.get(pk=pk)
-    messages = cadence.messagescript_set.all()
+    messages_script = cadence.messagescript_set.all()
     form = script_form.MessageScriptModelForm()
 
     context = {
         'pk': pk,
         'form': form,
-        'messages': messages
+        'messages_scripts': messages_script
     }
 
     if request.method == 'POST':
@@ -86,6 +78,8 @@ def cadence_execute(request, pk):
             datetime = form.cleaned_data['global_time']
             grp_name = form.cleaned_data['grp_name']
             schedule_cadence(cadence, grp_name, datetime)
+            messages.info(request, 'Cadence Executed')
 
+        return redirect(reverse_lazy('cadence:cadence-list'))
 
     return render(request, 'cadence/cadence-execute.html', context)

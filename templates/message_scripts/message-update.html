@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+
 {% block head %}
     {% load bootstrap4 %}
     {% bootstrap_css %}
@@ -9,8 +10,9 @@
     {{ form.media }}
 {% endblock %}
 
+
 {% block title %}
-    Execute Cadence
+    Update Message
 {% endblock %}
 
 {% block body %}
@@ -18,15 +20,16 @@
     <div class="loginBox">
         <div class="container">
             <div class="col text-center mt-3">
-                <h4 class="mb-4">Execute Cadence</h4>
+                <h4 class="mb-4">Update Message</h4>
                 <form method="POST" class="col-md-6 justify-content-center m-auto">
                     {% csrf_token %}
                     {% bootstrap_form form %}
-                    <button class="btn btn-success mt-2" type="submit">Execute</button>
+                    <button class="btn btn-success mt-2" type="submit">Update</button>
                 </form>
-                <button class="btn btn-info mt-2" onclick="location.href='{% url 'cadence:cadence-list' %}'">Go
+                <button class="btn btn-info mt-2" onclick="location.href='{{ view.get_success_url }}'">Go
                     Back
                 </button>
+
             </div>
         </div>
     </div>

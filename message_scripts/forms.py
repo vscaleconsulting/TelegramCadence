@@ -1,3 +1,4 @@
+from bootstrap_datepicker_plus import DateTimePickerInput
 from django import forms
 
 from . import models
@@ -18,12 +19,9 @@ class MessageScriptModelForm(forms.ModelForm):
 
         widgets = {
             "message": forms.TextInput(attrs={"Placeholder": "Message", 'autofocus': 'autofocus'}),
-            "account": forms.Select(attrs={'class': 'form-control'})
+            "account": forms.Select(attrs={'class': 'form-control'}),
         }
 
         labels = {
             "message": ""
         }
-
-
-

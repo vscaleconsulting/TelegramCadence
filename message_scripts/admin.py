@@ -7,8 +7,4 @@ from . import models
 class MessageScriptModelAdmin(admin.ModelAdmin):
     list_display = ('cadence',
                     'account',
-                    'message',
-                    'time_days',
-                    'time_hours',
-                    'time_minutes',
-                    'time_seconds')
+                    )
