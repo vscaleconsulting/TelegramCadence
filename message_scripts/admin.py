@@ -5,6 +5,7 @@ from . import models
 
 @admin.register(models.MessageScript)
 class MessageScriptModelAdmin(admin.ModelAdmin):
-    list_display = ('cadence',
+    list_display = ('message',
+                    'cadence',
                     'account',
                     )
