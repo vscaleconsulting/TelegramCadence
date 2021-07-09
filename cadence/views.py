@@ -55,7 +55,6 @@ def cadence_detail(request, pk):
         form = script_form.MessageScriptModelForm(request.POST)
 
         if form.is_valid():
-            print(form.cleaned_data)
             form = form.save(commit=False)
             form.cadence = cadence
             form.user = request.user
@@ -75,7 +74,6 @@ def cadence_execute(request, pk):
     if request.method == 'POST':
         form = forms.ExecuteCadenceForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
             datetime = form.cleaned_data['global_time']
             grp_name = form.cleaned_data['grp_name']
             schedule_cadence(cadence, grp_name, datetime)

@@ -5,7 +5,7 @@ from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
 
-debug = True
+debug = False
 
 
 def send_message(sender_session, receiver, message):

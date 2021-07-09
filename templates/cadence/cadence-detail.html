@@ -21,16 +21,18 @@
             {% endfor %}
         </ul>
     {% endif %}
-    <div class="'container">
-        <div class="'col text-center">
-            <h3>Script</h3>
-            {% for message in messages_scripts %}
-                <div>{{ message.message }} - {{ message.account }}
-                    - {{ message.time_days }}: {{ message.time_hours }}: {{ message.time_minutes }}: {{ message.time_seconds }}-
-                    <a href="{% url 'message:message-update' pk message.pk %}">Update</a>-
-                    <a href="{% url 'message:message-delete' pk message.pk %}">Delete</a>
-                </div>
-            {% endfor %}
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-6">
+                <h3>Script</h3>
+                {% for message in messages_scripts %}
+                    <div><strong>{{ message.account }}</strong> <i class="fas fa-long-arrow-alt-right"></i> {{ message.message }}
+                        <strong><em>at</em></strong> {{ message.time_days }}: {{ message.time_hours }}: {{ message.time_minutes }}: {{ message.time_seconds }}-
+                        <a href="{% url 'message:message-update' pk message.pk %}">Update</a>-
+                        <a href="{% url 'message:message-delete' pk message.pk %}">Delete</a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="loginBox">

@@ -18,7 +18,7 @@ class MessageScriptModelForm(forms.ModelForm):
         )
 
         widgets = {
-            "message": forms.TextInput(attrs={"Placeholder": "Message", 'autofocus': 'autofocus'}),
+            "message": forms.Textarea(attrs={"Placeholder": "Message", 'autofocus': 'autofocus'}),
             "account": forms.Select(attrs={'class': 'form-control'}),
         }
 

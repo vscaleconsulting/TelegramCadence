@@ -42,7 +42,8 @@ def get_otp(request, phone_num):
         user = client.get_me()
         client.disconnect()
         models.Account.objects.create(user=request.user,
-                                      acc_name=user.first_name + ('' if user.last_name is None else user.last_name),
+                                      acc_name=user.first_name + (
+                                          '' if user.last_name is None else f' {user.last_name}'),
                                       acc_username=user.username,
                                       acc_id=user.id,
                                       sess_str=session_str,
@@ -82,8 +83,6 @@ class TgAccountListView(ListView):
         return self.model.objects.filter(user=self.request.user)
 
 
-#
-#
 class TgAccountDetailView(DetailView):
     template_name = 'accounts/account-detail.html'
     context_object_name = 'account'

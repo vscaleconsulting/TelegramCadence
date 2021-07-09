@@ -16,9 +16,13 @@ def schedule_cadence(cadence, group_name, start_time):
     now = timezone.localtime()
 
     messages = cadence.messagescript_set.all()
+    unique_sess = messages.values_list('account__sess_str').distinct().all()
+
+    for sess in unique_sess:
+        join_grp(group_name, sess[0])
+
     for message in messages:
         session = message.account.sess_str
-        # join_grp(group_name, session)
         delay = timedelta(days=message.time_days, hours=message.time_hours,
                           minutes=message.time_minutes, seconds=message.time_seconds)
         message = message.message
