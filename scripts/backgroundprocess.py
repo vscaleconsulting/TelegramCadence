@@ -12,7 +12,6 @@ def schedule_message(session, group_name, message):
 
 
 def schedule_cadence(cadence, group_name, start_time):
-    print('Scheduling')
     now = timezone.localtime()
 
     messages = cadence.messagescript_set.all()

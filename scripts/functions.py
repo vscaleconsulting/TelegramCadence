@@ -25,7 +25,6 @@ def send_message(sender_session, receiver, message):
         client.disconnect()
         return True
     except Exception as e:
-        print(e)
         client.disconnect()
         return False
 

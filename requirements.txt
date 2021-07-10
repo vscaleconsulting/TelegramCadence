@@ -12,3 +12,5 @@ rsa==4.7.2
 six==1.16.0
 sqlparse==0.4.1
 Telethon==1.22.0
+
+pandas~=1.2.2

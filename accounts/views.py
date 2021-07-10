@@ -18,11 +18,9 @@ class TgAccountCreateView(View):
 
     def post(self, *args, **kwargs):
         if self.request.POST.get('phoneNum'):
-            print('here')
             # return render(self.request, 'accounts/account-otp.html', {'phone_num': self.request.POST.get('phoneNum')})
             return redirect(
                 reverse_lazy('accounts:account-otp', kwargs={'phone_num': self.request.POST.get('phoneNum')}))
-        print(self.request.POST.get('phoneNum'))
         return render(self.request, 'accounts/account-create.html')
 
 
