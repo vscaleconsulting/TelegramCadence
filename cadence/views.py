@@ -75,8 +75,11 @@ def cadence_execute(request, pk):
         form = forms.ExecuteCadenceForm(request.POST)
         if form.is_valid():
             datetime = form.cleaned_data['global_time']
-            grp_name = form.cleaned_data['grp_name']
-            schedule_cadence(cadence, grp_name, datetime)
+            grps_name = form.cleaned_data['grp_name'].split(",")
+            
+            for groups in grps_name:
+                schedule_cadence(cadence, groups, datetime)
+                
             messages.info(request, 'Cadence Executed')
         return redirect(reverse_lazy('cadence:cadence-list'))
 
