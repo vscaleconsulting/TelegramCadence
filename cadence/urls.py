@@ -10,4 +10,5 @@ urlpatterns = [
     path('detail/<int:pk>', views.cadence_detail, name='cadence-detail'),
     path('execute/<int:pk>', views.cadence_execute, name='cadence-execute'),
     path('create/', views.CadenceCreateView.as_view(), name='cadence-create'),
+    path('duplicate/<int:pk>',views.duplicated_cadence,name="cadence-duplicate")
 ]

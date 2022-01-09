@@ -4,7 +4,7 @@ from background_task import background
 from django.utils import timezone
 
 from .functions import send_message, join_grp
-
+ 
 
 @background(schedule=0)
 def schedule_message(session, group_name, message):
@@ -26,4 +26,4 @@ def schedule_cadence(cadence, group_name, start_time):
                           minutes=message.time_minutes, seconds=message.time_seconds)
         message = message.message
         # start_time += delay
-        schedule_message(session, group_name, message, repeat=delay.total_seconds())
+        schedule_message(session, group_name, message)
