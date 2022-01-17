@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "alpine-agent-331305",
+    "private_key_id": "b2f5eca1f57d085b756591bf56856cc39b1f5d02",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC8a3zV8Y4R1JuE\n3avbwaoHyZwmY8gB3OoPXlAsxzozbC471nxws6kZtqn0y24Zmph2q0kUkDuMSStN\nd2G/x0Wo9u5I5hPNBe0RV65RttMYdOAnqvV7ktEokKA36Qn+Kxcq+SFwod72FEfA\nu8hpxBKbGUxxRmtu8fYNsWl0PWUYb0PbL2HJ00jYjCFbfgCzFdmPAdqNT6WR3wPH\nQxPS2hueHR3TcwxjFc/ymy0dPt2qpmLvRL/wzdoXjEoQ9mAQ5LxIuZXIOIC6Pnf7\njaXMn5U+tSNwD9Ra4t7LYHLzsrWcVgkmkUEJtTaTPbZi5VqAyaUMMtPz6v+r/zsO\n1KdOkJbVAgMBAAECggEAAWhGHuz2dDCj1rq3IWWRaQx685h0Mntdbi70p1j3mNG6\niKzh8g+NeEkyfMcWM+/BKsW9vn8TSslzHtmA6+dHoGrzvaymQjZEnogKn8afTgP1\ndqZivgELOePWpoRBlFnrCuGge9Bhs3HUVV6xsQSLZQgr137Ap6v7+/8yu/EHc8bB\nqA03WQofq/K1L2TpRpw428f9gt34J5nW+DxAZvmR/N5ZDbLEZ7yW5F+JYeatR26J\nmrT31l19b3Vu9Qn3j8j4cRzbFWfdof2f55rW8sZILdgmhUyIlShqb0GEO4ku6ZFE\nMHecUkqIsCkpENIHsjUEXA/KRZvTOJOgSWyVOWMVQQKBgQD/UsUSlfv93X5VEzNN\n0QXVbdUgrSfVav/1j19Ut0DNglHFiNT0LZgGmeuGTN/EN8nOD+v1tiGtzL2hWlO+\n5U3b7Kf7aALUlU2BQk8e4pAKppyVqoUH6aH9Vaq2+vrzZwrao81f1k+pRo/kdR4h\n5N01axDzQW8HupKkAkYxgxrAYQKBgQC861NZyjagc2coiRdbiKI0w+bBRZ/Tg7Qi\nUFqnMZQYRfr6IWVL+3Ft2BHWsw2ucSCM5l6FBWsqfRULT2LF6KF6mJQ++oQZhdHm\npxLUhHtM0O29Y7dQZTnFpuVU6qQsgQhd+uTwKDpqrkthf2D4KH6TJq0UAJ6TDw16\nhSwP1DC69QKBgQCQO5O0giHOMXeSW7xZs0CWZutFAExGVaGueIWj97mV3o6PBlM2\ndSMyZ3UTcw3dbJ6F15y2O2MfKU/efIZeim7HVBM5BHLE4GreIDVN/zLbsW83ZRKt\ne5/U2rYLlBB7u7P3+xyjjQ+HUqMqrbaN8xm7eXYj1M0CErWQDPDWO3e7QQKBgQCN\nD8354pKtdd4WF184eqpbadeYgstXXSUY5hT6eHuTMFW5hUwk0wgcM9UGEkZp9ZCP\nhMgY3TXq0ODwxAMFsbE5YEp5SAdxI0naxu+5fX6vmeWan6VWQ29C1V6x7E5P6Lz9\np4RgijksRR6GG12ljl8MszlTES9WsUuoK13+J7uHLQKBgA5Up3CC8wHHfZgMZrIq\nD0CYh52M7BR7hm+E0RYCtLQajO5QYG1xst+mDQybIwt8wj7iMcPz8z13XoPcZleQ\npMIhVvPl7SIpRtOyxlg/V49V4Jwcxrabs/JDPhRlhd+dk7RiC27pXbL2gEktapj1\nS5SsGp2u1pPuq7YC4ohTc1ML\n-----END PRIVATE KEY-----\n",
+    "client_email": "twitterscrapingtest@alpine-agent-331305.iam.gserviceaccount.com",
+    "client_id": "107872714630961168437",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/twitterscrapingtest%40alpine-agent-331305.iam.gserviceaccount.com"
+}

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{#{% load crispy_forms_tags %}#}
+{% block head %}
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    <style>
+        .row1{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    </style>
+    {{ form.media }}
+{% endblock %}
+
+
+{% block title %}
+    Cadence Import
+{% endblock %}
+
+{% block body %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <div class="loginBox">
+        <div class="container">
+            <div class="col text-center mt-3">
+                <h4 class="mb-4">Cadence: {{cadence_name}}</h4>
+                <form method="POST" class="col-md-6 justify-content-center m-auto">
+                    {% csrf_token %}
+                    
+                    <div class="row1">
+                        <label for="url">Spreadsheet url: </label>
+                        <input type="text" name="url" placeholder="https://">
+                    </div>
+                    <div class="row1">
+                        <label for="sheet_no">Sheet No: </label>
+                        <input type="number" name="sheet_no" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="col">Column No: </label>
+                        <input type="number" name="col" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="starting_row">Starting Row: </label>
+                        <input type="number" name="starting_row" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="ending_row">Ending Row: </label>
+                        <input type="number" name="ending_row" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="days">Delay Days: </label>
+                        <input type="number" name="days" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="hours">Delay Hours: </label>
+                        <input type="number" name="hours" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="minutes">Delay Minutes: </label>
+                        <input type="number" name="minutes" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="seconds">Delay Seconds: </label>
+                        <input type="number" name="seconds" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="seconds">Choose Accounts: </label>
+                        <select name="accounts" multiple>
+                            {% for account in accounts%} 
+                                <option value="{{account.acc_id}}">{{account.acc_name}}</option>
+                            {% endfor %}
+                            
+                          </select>
+                    </div>
+                    
+                    <a href="{% url 'cadence:cadence-detail' pk %}" class="btn btn-warning mt-2">back</a>
+                    <button class="btn btn-success mt-2" type="submit">Fetch Messages</button>
+
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-6">
+                <h3>Script</h3>
+                {% for message in messages_scripts %}
+                    <div><strong>{{ message.account }}</strong> <i class="fas fa-long-arrow-alt-right"></i> {{ message.message }}
+                        <strong><em>at</em></strong> {{ message.time_days }}: {{ message.time_hours }}: {{ message.time_minutes }}: {{ message.time_seconds }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

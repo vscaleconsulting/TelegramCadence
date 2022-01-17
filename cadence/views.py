@@ -7,7 +7,10 @@ from message_scripts.models import MessageScript
 from message_scripts import forms as script_form
 from scripts.backgroundprocess import schedule_cadence
 from . import forms, models
-
+from . import validators
+from scripts.functions import fetch_messages_gspread
+from accounts.models import Account
+from cadence.functions import create_mass_messages
 
 class CadenceCreateView(CreateView):
     template_name = 'cadence/cadence-create.html'
@@ -103,3 +106,50 @@ def cadence_execute(request, pk):
         return redirect(reverse_lazy('cadence:cadence-list'))
 
     return render(request, 'cadence/cadence-execute.html', context)
+
+
+def cadence_import(request,pk):
+
+    cadence = models.Cadence.objects.get(pk=pk)
+    messages_scripts = MessageScript.objects.all().filter(cadence=cadence)
+    accounts = Account.objects.all().filter(user=request.user)
+
+    if request.method=="POST":
+        url = request.POST["url"]
+        sheet_no = int(request.POST["sheet_no"])
+        col_no = int(request.POST["col"])
+        starting_row = int(request.POST["starting_row"])
+        ending_row = int(request.POST["ending_row"])
+        days = int(request.POST["days"])
+        hours =  int(request.POST["hours"])
+        minutes =  int(request.POST["minutes"])
+        seconds =  int(request.POST["seconds"])
+        accounts = list(map(int,request.POST.getlist("accounts"))) 
+        
+
+        #  validation check
+        args = [sheet_no,col_no,starting_row,ending_row,days,hours,minutes,seconds]
+        validators.cadence_import_args_validator(request, url, args)
+
+        # fetch messages from url : starting_row to ending_row -> int
+        try:
+            messages_rows = fetch_messages_gspread(url,sheet_no,starting_row,ending_row,col_no)
+        except Exception as e:
+            print("error log",e)
+            messages.error(request, f"{e}")
+            return redirect("cadence:cadence-detail",pk)
+
+        # create message_scripts from messages and accounts
+        create_mass_messages(messages_rows,accounts,cadence,days,hours,minutes,seconds)
+        messages.info(request,"imported messages")
+        
+
+    context = {
+        "cadence_name":cadence.name,
+        "messages_scripts":messages_scripts,
+        "pk":pk,
+        "accounts":accounts
+    }
+
+
+    return render(request,"cadence/cadence-import.html",context)
