@@ -117,30 +117,30 @@ def cadence_import(request,pk):
     if request.method=="POST":
         url = request.POST["url"]
         sheet_no = int(request.POST["sheet_no"])
-        col_no = int(request.POST["col"])
+        names_col = int(request.POST["names_col"])
+        messages_col = int(request.POST["messages_col"])
         starting_row = int(request.POST["starting_row"])
         ending_row = int(request.POST["ending_row"])
         days = int(request.POST["days"])
         hours =  int(request.POST["hours"])
         minutes =  int(request.POST["minutes"])
         seconds =  int(request.POST["seconds"])
-        accounts = list(map(int,request.POST.getlist("accounts"))) 
         
 
         #  validation check
-        args = [sheet_no,col_no,starting_row,ending_row,days,hours,minutes,seconds]
+        args = [sheet_no,names_col,messages_col,starting_row,ending_row,days,hours,minutes,seconds]
         validators.cadence_import_args_validator(request, url, args)
 
         # fetch messages from url : starting_row to ending_row -> int
         try:
-            messages_rows = fetch_messages_gspread(url,sheet_no,starting_row,ending_row,col_no)
+            names,messages_list = fetch_messages_gspread(url,sheet_no,starting_row,ending_row,names_col,messages_col)
         except Exception as e:
             print("error log",e)
             messages.error(request, f"{e}")
             return redirect("cadence:cadence-detail",pk)
 
         # create message_scripts from messages and accounts
-        create_mass_messages(messages_rows,accounts,cadence,days,hours,minutes,seconds)
+        create_mass_messages(names,messages_list,cadence,days,hours,minutes,seconds)
         messages.info(request,"imported messages")
         
 

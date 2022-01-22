@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Account Detail - {{ account.acc_name }}
+{% endblock %}
+
+{% block body %}
+<style>
+</style>
+<div class="account_container">
+<style>
+    
+</style>
+
+{% for account in accounts %}
+
+    <h5>Account Name: {{ account.acc_name }}</h5>
+    <h5>Account Username: {{ account.acc_username }}</h5>
+    <h5>Account ID: {{ account.acc_id }}</h5>
+    <hr>
+{% endfor %}
+<!-- <div class="account-container">
+
+
+    
+</div> -->
+{% endblock %}

@@ -44,8 +44,12 @@
                         <input type="number" name="sheet_no" value="0">
                     </div>
                     <div class="row1">
-                        <label for="col">Column No: </label>
-                        <input type="number" name="col" value="0">
+                        <label for="names_col">Names Column No: </label>
+                        <input type="number" name="names_col" value="0">
+                    </div>
+                    <div class="row1">
+                        <label for="messages_col">Messages Column No: </label>
+                        <input type="number" name="messages_col" value="0">
                     </div>
                     <div class="row1">
                         <label for="starting_row">Starting Row: </label>
@@ -71,14 +75,36 @@
                         <label for="seconds">Delay Seconds: </label>
                         <input type="number" name="seconds" value="0">
                     </div>
-                    <div class="row1">
-                        <label for="seconds">Choose Accounts: </label>
-                        <select name="accounts" multiple>
+                    <style>
+                        .accouns-display{
+                            display: flex;
+                            flex-direction: column;
+                            border: 2px solid black;
+                            align-items: center;
+                            
+                        }
+                        .accouns-display h3{
+                            color: brown;
+                            font-weight: bold;
+                        }
+                        .accounts{
+                            width: inherit;
+                            display: flex; 
+                            flex-direction: column; 
+                            margin-top: 3px;   
+                            width: 100%;
+                            align-items: center;
+                        }
+                        
+                    </style>
+                    <div class="accouns-display">
+                        <h3>Accounts</h3>
+                        <div class="accounts">
                             {% for account in accounts%} 
-                                <option value="{{account.acc_id}}">{{account.acc_name}}</option>
+                               <p>{{account.acc_name}}</p>
                             {% endfor %}
                             
-                          </select>
+                        </div>
                     </div>
                     
                     <a href="{% url 'cadence:cadence-detail' pk %}" class="btn btn-warning mt-2">back</a>

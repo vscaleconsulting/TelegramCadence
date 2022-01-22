@@ -1,6 +1,5 @@
 import asyncio
 from datetime import datetime
-
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
@@ -48,9 +47,12 @@ def get_gspread(url,filename="scripts/cred.json"):
     
 
 
-def fetch_messages_gspread(url,sheet_no,starting_row,ending_row,col_no):
+def fetch_messages_gspread(url,sheet_no,starting_row,ending_row,names_col,messages_col):
     gsheet = get_gspread(url)
     worksheet = gsheet.get_worksheet(sheet_no-1)
-    return worksheet.col_values(col_no)[starting_row:ending_row]
+    
+    names = worksheet.col_values(names_col)[starting_row:ending_row]
+    messages = worksheet.col_values(messages_col)[starting_row:ending_row]
+    return names,messages
 
     

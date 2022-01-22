@@ -87,6 +87,14 @@ class TgAccountDetailView(DetailView):
 
     model = models.Account
 
+def get_account_details(request):
+
+    context = {
+        "accounts":models.Account.objects.all()
+    }
+    return render(request,"accounts/account-list-detail.html",context)
+
 # def get_queryset(self):
 #     account = models.Account.objects.get(pk=self.kwargs['pk'])
 #     return account.group_set.all()
+
