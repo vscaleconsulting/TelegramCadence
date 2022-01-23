@@ -32,6 +32,11 @@ def get_otp(request, phone_num):
         client = clients[phone_num]
         clients.pop(phone_num)
 
+        api_id = 1868530
+        api_key = "edf7d1e794e0b4a5596aa27c29d17eba"
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
         client.connect()
         pch = request.session.get('pch')
 
@@ -48,10 +53,7 @@ def get_otp(request, phone_num):
                                       phone=int(user.phone))
         return redirect(reverse_lazy('core:home-page'))
 
-    api_id = 1868530
-    api_key = "edf7d1e794e0b4a5596aa27c29d17eba"
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+    
 
     client = TelegramClient(StringSession(), api_id, api_key, loop=loop)
     client.connect()
