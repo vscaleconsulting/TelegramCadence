@@ -14,6 +14,7 @@
                 <form method="POST" class="form-control col-md-6 justify-content-center m-auto">
                     {% csrf_token %}
                     <input name="otp" placeholder="Enter OTP" required>
+                    <input name="2fa_password" type="text" placeholder="Passrowd if 2fa">
                     <input name="client" hidden value="{{ client }}">
                     <button class="btn btn-success mt-2" type="submit">Submit</button>
                 </form>
