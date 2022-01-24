@@ -1,4 +1,5 @@
 asgiref==3.4.1
+asyncio==3.4.3
 beautifulsoup4==4.10.0
 bootstrap4==0.1.0
 cachetools==4.2.4

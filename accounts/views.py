@@ -6,6 +6,7 @@ from django.views import View
 from django.views.generic import DeleteView, ListView, DetailView
 from telethon.sessions import StringSession
 from telethon.sync import TelegramClient
+from telethon.errors import SessionPasswordNeededError
 
 from . import models
 
@@ -29,13 +30,21 @@ def get_otp(request, phone_num):
 
     if request.method == 'POST':
         otp = request.POST.get('otp')
+        password = request.POST.get('2fa_password')
+    
         client = clients[phone_num]
         clients.pop(phone_num)
 
         client.connect()
         pch = request.session.get('pch')
 
-        client.sign_in(phone_num, otp, phone_code_hash=pch)
+        try:
+            client.sign_in(phone_num, otp, phone_code_hash=pch)
+
+        except SessionPasswordNeededError as err:
+            client.sign_in(password=password)
+
+        
         session_str = client.session.save()
         user = client.get_me()
         client.disconnect()
