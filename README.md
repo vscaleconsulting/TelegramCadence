@@ -3,6 +3,9 @@
 Authors Username: NotVaishav , AtmegaBuzz , Gagandheep
 Software By Vscale Consulting LLP
 ```
+```
+2fa two factor auth account add available on 2fa branch of this repo
+```
 
 # Features
   - Link multiple Telegram Accounts With 2 factor aut enabled.
