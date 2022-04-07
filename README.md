@@ -1,3 +1,7 @@
+# video on how to use it
+https://www.awesomescreenshot.com/video/8280136?key=4be7a052b68f4e563445ff79dfa24daf
+
+
 # Telegram Cadence Telegram Marketing Tool.
 ```
 Authors Username: NotVaishav , AtmegaBuzz , Gagandheep
